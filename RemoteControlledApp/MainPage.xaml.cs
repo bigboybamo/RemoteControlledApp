@@ -1,23 +1,48 @@
-﻿namespace RemoteControlledApp
+﻿using RemoteControlledApp.Models;
+using RemoteControlledApp.ViewModels;
+using System.Collections.ObjectModel;
+
+namespace RemoteControlledApp
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
 
-
+        public ObservableCollection<computerCommand> CommandList { get; set; } = new ObservableCollection<computerCommand>();
         public MainPage()
         {
             InitializeComponent();
+
+            CommandList.Add(new computerCommand()
+            {
+                ID = 1,
+                CommandName = "Restart Computer",
+                CommandDescription = "Restarts the Computer",
+                CommandFunc = "tbd"
+            });
+
+            CommandList.Add(new computerCommand()
+            {
+                ID = 2,
+                CommandName = "Lock Computer",
+                CommandDescription = "Locks the Computer",
+                CommandFunc = "tbd"
+            });
+
+            CommandList.Add(new computerCommand()
+            {
+                ID = 3,
+                CommandName = "ShutDown",
+                CommandDescription = "Shut downs the Computer",
+                CommandFunc = "tbd"
+            });
+
+            this.BindingContext = this;
+
             Entry entry = new Entry { Placeholder = "Enter text" };
             entry.TextChanged += OnEntryTextChanged;
             entry.Completed += OnEntryCompleted;
 
-            var monkeyList = new List<string>();
-            monkeyList.Add("Shutdown");
-            monkeyList.Add("Lock Computer");
-
-            Picker picker = new Picker { Title = "Select a Command" };
-            picker.ItemsSource = monkeyList;
         }
 
         void OnEntryTextChanged(object sender, TextChangedEventArgs e)

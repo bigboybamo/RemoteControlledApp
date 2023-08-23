@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using RemoteControlledApp.Services;
+using RemoteControlledApp.View;
+using RemoteControlledApp.ViewModels;
 
 namespace RemoteControlledApp
 {
@@ -16,6 +18,9 @@ namespace RemoteControlledApp
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             builder.Services.AddSingleton<ICommandService, CommandService>();
+            builder.Services.AddSingleton<DropDownDetailPageViewModel>();
+            builder.Services.AddSingleton<DropDownDetailPage>();
+
 
 #if DEBUG
 		builder.Logging.AddDebug();

@@ -9,8 +9,9 @@ namespace RemoteControlledApp.Models
     public class computerCommand
 
     {
-        public string commandName { get; set; }
-        public string commandDescription { get; set; }
-        public string commandFunc { get; set; }
+        public int ID { get; set; }
+        public string CommandName { get; set; }
+        public string CommandDescription { get; set; }
+        public string CommandFunc { get; set; }
     }
 }

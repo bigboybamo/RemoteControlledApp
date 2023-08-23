@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:viewModels="clr-namespace:RemoteControlledApp.ViewModels"
+             x:Class="RemoteControlledApp.View.DropDownDetailPage"
+             Title="DropDownDetailPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Drop Down Command"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <StackLayout Orientation="Horizontal">
+            <Picker Title ="Select Command" ItemsSource="{Binding CommandList}" ItemDisplayBinding="{Binding commandName}" />
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

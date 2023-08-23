@@ -13,16 +13,25 @@ namespace RemoteControlledApp.Services
         {
             new computerCommand()
             {
-                commandName = "Restart Computer",
-                commandDescription = "Restarts the Computer",
-                commandFunc = "tbd"
+                ID = 1,
+                CommandName = "Restart Computer",
+                CommandDescription = "Restarts the Computer",
+                CommandFunc = "tbd"
             },
              new computerCommand()
             {
-                commandName = "Lock Computer",
-                commandDescription = "Locks the Computer",
-                commandFunc = "tbd"
-            }
+                 ID = 2,
+                CommandName = "Lock Computer",
+                CommandDescription = "Locks the Computer",
+                CommandFunc = "tbd"
+            },
+             new computerCommand()
+             {
+                 ID = 3,
+                 CommandName = "ShutDown",
+                 CommandDescription= "Shut downs the Computer",
+                 CommandFunc = "tbd"
+             }
 
         };
         public Task<List<computerCommand>> GetCommand()
