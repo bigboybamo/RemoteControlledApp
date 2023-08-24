@@ -1,12 +1,16 @@
 ﻿using RemoteControlledApp.Models;
+using RemoteControlledApp.Services;
 using RemoteControlledApp.ViewModels;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace RemoteControlledApp
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
+        string Iptext = "";
+        computerCommand checkCommand = new computerCommand();
 
         public ObservableCollection<computerCommand> CommandList { get; set; } = new ObservableCollection<computerCommand>();
         public MainPage()
@@ -26,7 +30,7 @@ namespace RemoteControlledApp
                 ID = 2,
                 CommandName = "Lock Computer",
                 CommandDescription = "Locks the Computer",
-                CommandFunc = "tbd"
+                CommandFunc = "rundll32.exe user32.dll,LockWorkStation"
             });
 
             CommandList.Add(new computerCommand()
@@ -49,12 +53,23 @@ namespace RemoteControlledApp
         {
             string oldText = e.OldTextValue;
             string newText = e.NewTextValue;
-            string myText = entry.Text;
+            Iptext = entry.Text;
         }
 
         void OnEntryCompleted(object sender, EventArgs e)
         {
-            string text = ((Entry)sender).Text;
+            Iptext = ((Entry)sender).Text;
+        }
+
+        void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var picker = (Picker)sender;
+            int selectedIndex = picker.SelectedIndex;
+
+            if (selectedIndex != -1)
+            {
+               checkCommand = CommandList.Where(X => X.ID == selectedIndex+1).FirstOrDefault();
+            }
         }
 
         private void OnCounterClicked(object sender, EventArgs e)
@@ -66,7 +81,11 @@ namespace RemoteControlledApp
             else
                 CounterBtn.Text = $"Clicked {count} times";
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            CommandLabelIP.Text = Iptext;
+            CommandLabelName.Text = checkCommand.CommandDescription;
+            ProcedureService.RunCommand(checkCommand.CommandFunc);
+
+
         }
     }
 }

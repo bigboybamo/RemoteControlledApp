@@ -24,7 +24,7 @@
             <Entry x:Name="entry"
                 MinimumWidthRequest="500"
                 Placeholder="Enter text"
-                TextChanged="OnEntryTextChanged"
+               TextChanged="OnEntryTextChanged"
                 Completed="OnEntryCompleted" />
 
             <Label
@@ -34,7 +34,12 @@
                 FontSize="18"
                 HorizontalOptions="Center" />
 
-            <Picker HorizontalOptions="Center" Title ="Select Command" ItemsSource="{Binding CommandList}" ItemDisplayBinding="{Binding CommandDescription}" />
+            <Picker HorizontalOptions="Center" 
+                    Title ="Select Command" 
+                    ItemsSource="{Binding CommandList}" 
+                    ItemDisplayBinding="{Binding CommandName}" 
+                    SelectedIndexChanged="OnPickerSelectedIndexChanged"
+                    />
 
             <Button
                 x:Name="CounterBtn"
@@ -42,6 +47,10 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
+
+            <Label Text="DisplayCommandIP"  x:Name="CommandLabelIP" FontSize="22"/>
+
+            <Label Text="DisplayCommandUserName"  x:Name="CommandLabelName" FontSize="22"/>
 
         </VerticalStackLayout>
     </ScrollView>
