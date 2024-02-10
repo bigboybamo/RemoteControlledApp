@@ -38,7 +38,7 @@ namespace RemoteControlledApp
                 ID = 3,
                 CommandName = "ShutDown",
                 CommandDescription = "Shut downs the Computer",
-                CommandFunc = "tbd"
+                CommandFunc = "shutdown /s"
             });
 
             this.BindingContext = this;

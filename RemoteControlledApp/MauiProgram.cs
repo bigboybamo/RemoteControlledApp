@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using RemoteControlledApp.Interfaces;
 using RemoteControlledApp.Services;
 using RemoteControlledApp.View;
 using RemoteControlledApp.ViewModels;

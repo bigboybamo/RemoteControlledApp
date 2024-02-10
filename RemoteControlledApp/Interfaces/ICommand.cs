@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RemoteControlledApp.Services
+namespace RemoteControlledApp.Interfaces
 {
     public interface ICommandService
 

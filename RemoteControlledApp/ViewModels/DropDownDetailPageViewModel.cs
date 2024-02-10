@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using RemoteControlledApp.Interfaces;
 using RemoteControlledApp.Models;
-using RemoteControlledApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace RemoteControlledApp.ViewModels
 {
-    
+
     public class DropDownDetailPageViewModel: ObservableObject
     {
         public  ObservableCollection<computerCommand> CommandList { get; set; } = new ObservableCollection<computerCommand>();

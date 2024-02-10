@@ -51,6 +51,8 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="SSH.NET" Version="2020.0.2" />
+		<PackageReference Include="System.Management" Version="7.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
