@@ -43,15 +43,10 @@
 
             <Button
                 x:Name="CounterBtn"
-                Text="Click me"
+                Text="Run Command"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
-
-            <Label Text="DisplayCommandIP"  x:Name="CommandLabelIP" FontSize="22"/>
-
-            <Label Text="DisplayCommandUserName"  x:Name="CommandLabelName" FontSize="22"/>
-
         </VerticalStackLayout>
     </ScrollView>
 

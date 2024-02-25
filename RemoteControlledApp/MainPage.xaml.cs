@@ -80,11 +80,7 @@ namespace RemoteControlledApp
                 CounterBtn.Text = $"Clicked {count} time";
             else
                 CounterBtn.Text = $"Clicked {count} times";
-
-            CommandLabelIP.Text = Iptext;
-            CommandLabelName.Text = checkCommand.CommandDescription;
             ProcedureService.RunCommand(checkCommand.CommandFunc);
-
 
         }
     }
