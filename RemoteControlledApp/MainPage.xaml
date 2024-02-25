@@ -16,13 +16,13 @@
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Please Enter Ip Address"
+                Text="Please Enter Ip Address or Computer name"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Entry x:Name="entry"
-                MinimumWidthRequest="500"
+               WidthRequest="300"
                 Placeholder="Enter text"
                TextChanged="OnEntryTextChanged"
                 Completed="OnEntryCompleted" />
@@ -30,7 +30,6 @@
             <Label
                 Text="Please select Command you want to perfom"
                 SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
 
