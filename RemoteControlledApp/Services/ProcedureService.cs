@@ -1,10 +1,14 @@
-﻿using Renci.SshNet;
+﻿using RemoteControlledApp.Models;
+using Renci.SshNet;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
+using System.Management.Automation;
+using System.Management.Automation.Runspaces;
 using System.Net;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,24 +18,31 @@ namespace RemoteControlledApp.Services
 {
     public class ProcedureService
     {
-        public static void RunCommand(string anyCommand)
+        public static void RunCommand(UserExcecute userExcecute)
         {
-            var proc1 = new ProcessStartInfo();
-            proc1.UseShellExecute = true;
-            proc1.WorkingDirectory = @"C:\Windows\System32";
-            proc1.FileName = @"C:\Windows\System32\cmd.exe";
-            proc1.Arguments = "/c " + anyCommand;
-            proc1.WindowStyle = ProcessWindowStyle.Hidden;
-            Process.Start(proc1);
+            // Convert the password to a secure string
+            SecureString securePassword = new SecureString();
+            foreach (char c in userExcecute.Password)
+            {
+                securePassword.AppendChar(c);
+            }
 
-            ManagementClass processClass = new ManagementClass(@"\\<10.101.210.27>\root\cimv2:Win32_Process");
-            ManagementBaseObject inParams = processClass.GetMethodParameters("Create");
+            PSCredential credential = new PSCredential(userExcecute.UserName, securePassword);
 
-            inParams["CommandLine"] = anyCommand;
-            inParams["CurrentDirectory"] = @"c:\windows\system32";
+            Runspace runspace = RunspaceFactory.CreateRunspace();
+            runspace.Open();
 
-            ManagementBaseObject outParams = processClass.InvokeMethod("Create", inParams, null);
+            Pipeline pipeline = runspace.CreatePipeline();
 
+            pipeline.Commands.AddScript(userExcecute.Command);
+
+            pipeline.Commands[0].Parameters.Add("Credential", credential);
+
+            pipeline.Commands[0].Parameters.Add("ComputerName", userExcecute.ComputerName);
+
+            pipeline.Invoke();
+
+            runspace.Close();
         }
     }
 }

@@ -21,9 +21,27 @@
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Entry x:Name="entry"
+            <Entry x:Name="computername"
                WidthRequest="300"
-                Placeholder="Enter text"
+                Placeholder="Computer Name"
+               TextChanged="OnEntryTextChanged"
+                Completed="OnEntryCompleted" />
+
+            <Label
+                Text="Please Enter UserName and Password"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <Entry x:Name="username"
+               WidthRequest="300"
+                Placeholder="Username"
+               TextChanged="OnEntryTextChanged"
+                Completed="OnEntryCompleted" />
+
+            <Entry x:Name="password"
+               WidthRequest="300"
+                Placeholder="password"
                TextChanged="OnEntryTextChanged"
                 Completed="OnEntryCompleted" />
 
@@ -43,8 +61,8 @@
             <Button
                 x:Name="CounterBtn"
                 Text="Run Command"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                SemanticProperties.Hint="Runs the selected command"
+                Clicked="ExecuteClicked"
                 HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>

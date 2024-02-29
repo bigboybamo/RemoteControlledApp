@@ -9,9 +9,7 @@ namespace RemoteControlledApp
     public partial class MainPage : ContentPage
     {
         int count = 0;
-        string Iptext = "";
         computerCommand checkCommand = new computerCommand();
-
         public ObservableCollection<computerCommand> CommandList { get; set; } = new ObservableCollection<computerCommand>();
         public MainPage()
         {
@@ -42,23 +40,14 @@ namespace RemoteControlledApp
             });
 
             this.BindingContext = this;
-
-            Entry entry = new Entry { Placeholder = "Enter text" };
-            entry.TextChanged += OnEntryTextChanged;
-            entry.Completed += OnEntryCompleted;
-
         }
 
         void OnEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            string oldText = e.OldTextValue;
-            string newText = e.NewTextValue;
-            Iptext = entry.Text;
         }
 
         void OnEntryCompleted(object sender, EventArgs e)
         {
-            Iptext = ((Entry)sender).Text;
         }
 
         void OnPickerSelectedIndexChanged(object sender, EventArgs e)
@@ -72,16 +61,16 @@ namespace RemoteControlledApp
             }
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void ExecuteClicked(object sender, EventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-            ProcedureService.RunCommand(checkCommand.CommandFunc);
-
+            var userCommand = new UserExcecute
+            {
+                UserName = username.Text,
+                Password = password.Text,
+                ComputerName = computername.Text,
+                Command = checkCommand.CommandFunc
+            };
+            ProcedureService.RunCommand(userCommand);
         }
     }
 }

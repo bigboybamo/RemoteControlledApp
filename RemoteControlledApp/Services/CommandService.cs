@@ -24,14 +24,14 @@ namespace RemoteControlledApp.Services
                  ID = 2,
                 CommandName = "Lock Computer",
                 CommandDescription = "Locks the Computer",
-                CommandFunc = "tbd"
+                CommandFunc = "rundll32.exe user32.dll,LockWorkStation"
             },
              new computerCommand()
              {
                  ID = 3,
                  CommandName = "ShutDown",
                  CommandDescription= "Shut downs the Computer",
-                 CommandFunc = "tbd"
+                 CommandFunc = "shutdown /s"
              }
 
         };
