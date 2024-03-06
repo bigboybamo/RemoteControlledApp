@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RemoteControlledApp.MainPage">
+             x:Class="RemoteControlledApp.MainPage"
+             xmlns:local="clr-namespace:RemoteControlledApp">
 
     <ScrollView>
         <VerticalStackLayout
@@ -38,12 +39,30 @@
                 Placeholder="Username"
                TextChanged="OnEntryTextChanged"
                 Completed="OnEntryCompleted" />
-
-            <Entry x:Name="password"
+            <StackLayout>
+                <Grid>
+                    <Entry x:Name="password"
                WidthRequest="300"
                 Placeholder="password"
                TextChanged="OnEntryTextChanged"
-                Completed="OnEntryCompleted" />
+                Completed="OnEntryCompleted" 
+                IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"/>
+
+            <ImageButton VerticalOptions="Center"
+               HeightRequest="20"
+               HorizontalOptions="End"
+               Source="eye_password_hide.png"
+               Margin="0,0,295,0">
+                <ImageButton.Triggers>
+                    <EventTrigger Event="Clicked">
+                        <local:ShowPasswordTriggerAction ShowIcon="eye.png"
+                                                              HideIcon="eye_password_hide.png"
+                                                              x:Name="ShowPasswordActualTrigger"/>
+                    </EventTrigger>
+                </ImageButton.Triggers>
+            </ImageButton>
+                    </Grid>
+            </StackLayout>
 
             <Label
                 Text="Please select Command you want to perfom"
@@ -57,7 +76,6 @@
                     ItemDisplayBinding="{Binding CommandName}" 
                     SelectedIndexChanged="OnPickerSelectedIndexChanged"
                     />
-
             <Button
                 x:Name="CounterBtn"
                 Text="Run Command"
