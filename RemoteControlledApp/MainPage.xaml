@@ -41,7 +41,13 @@
                 Completed="OnEntryCompleted" />
             <StackLayout>
                 <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
                     <Entry x:Name="password"
+                           Grid.Column="0" 
+                           Margin="5"
                WidthRequest="300"
                 Placeholder="password"
                TextChanged="OnEntryTextChanged"
@@ -49,10 +55,11 @@
                 IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"/>
 
             <ImageButton VerticalOptions="Center"
+                         Grid.Column="1"
                HeightRequest="20"
                HorizontalOptions="End"
                Source="eye_password_hide.png"
-               Margin="0,0,295,0">
+              >
                 <ImageButton.Triggers>
                     <EventTrigger Event="Clicked">
                         <local:ShowPasswordTriggerAction ShowIcon="eye.png"
